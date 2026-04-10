@@ -1,6 +1,7 @@
 {
   "name": "@accord/protocol",
   "version": "0.0.0",
+  "description": "This is the runtime grammar of Accord.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
