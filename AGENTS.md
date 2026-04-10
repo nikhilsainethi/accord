@@ -4,11 +4,16 @@
 
 Accord is a docs-first, TypeScript-first monorepo for an open protocol, SDK, and reference implementation around scoped context disclosure and human approval of high-impact AI actions in personal AI systems.
 
+Accord is not a general assistant and not a memory engine. Treat it as a protocol, SDK, and reference implementation project first.
+
 ## Working Rules
 
 - Preserve the docs-first structure. If you change repo shape, update `README.md` and `docs/index.md`.
 - Keep bootstrap work boring and minimal. Add only files that have a clear immediate purpose.
+- Keep the project local-first, TypeScript-first, and fail-closed by default.
 - Do not implement application logic unless the task explicitly asks for it.
+- Protocol design and validation work come before UI polish.
+- Do not add features beyond the current task.
 - Prefer local-first assumptions. Do not introduce cloud infrastructure, hosted services, or deployment tooling unless requested.
 - Do not add frameworks, databases, background workers, or frontend stacks by default.
 - Keep package names aligned to folder names under `packages/` and `examples/`.
@@ -26,6 +31,7 @@ Accord is a docs-first, TypeScript-first monorepo for an open protocol, SDK, and
 
 ## When Editing
 
+- Explain the plan before large edits.
 - Prefer small, reviewable changes.
 - Keep naming clear and literal.
 - Avoid speculative abstractions.
