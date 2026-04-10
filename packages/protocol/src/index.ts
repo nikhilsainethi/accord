@@ -26,6 +26,11 @@ export {
   parseActionProposal
 } from "./objects/action-proposal.js";
 export {
+  auditRecordSchema,
+  isAuditRecord,
+  parseAuditRecord
+} from "./objects/audit-record.js";
+export {
   approvalReceiptSchema,
   isApprovalReceipt,
   parseApprovalReceipt
@@ -41,6 +46,11 @@ export {
   parseGrantedScope
 } from "./objects/granted-scope.js";
 export {
+  isRevocationEvent,
+  parseRevocationEvent,
+  revocationEventSchema
+} from "./objects/revocation-event.js";
+export {
   isScopeRequest,
   parseScopeRequest,
   scopeRequestSchema
@@ -49,6 +59,7 @@ export type {
   ActionProposal,
   ActionProposalTarget
 } from "./objects/action-proposal.js";
+export type { AuditRecord } from "./objects/audit-record.js";
 export type {
   ApprovalReceipt,
   ApprovalReceiptConditions
@@ -62,4 +73,5 @@ export type {
   GrantedScope,
   GrantedScopeConstraints
 } from "./objects/granted-scope.js";
+export type { RevocationEvent } from "./objects/revocation-event.js";
 export type { ScopeRequest } from "./objects/scope-request.js";
