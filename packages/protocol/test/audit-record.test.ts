@@ -65,6 +65,16 @@ test("parseAuditRecord rejects invalid actor actor_type values", () => {
   );
 });
 
+test("parseAuditRecord rejects impossible recorded_at timestamps", () => {
+  expectAuditRecordInvalid(
+    {
+      ...createAuditRecordPayload(),
+      recorded_at: "2026-02-30T16:31:05Z"
+    },
+    "recorded_at"
+  );
+});
+
 test("parseAuditRecord rejects missing recorded_at", () => {
   const payload = createAuditRecordPayload();
 

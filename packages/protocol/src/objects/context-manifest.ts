@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   idSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringListSchema,
   nonEmptyStringSchema,
@@ -39,7 +40,7 @@ export interface ContextManifest {
   generated_at: string;
   provenance?: ContextManifestProvenanceEntry[];
   notes?: string;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 const contextManifestUsedEntrySchema: z.ZodType<ContextManifestUsedEntry> = z

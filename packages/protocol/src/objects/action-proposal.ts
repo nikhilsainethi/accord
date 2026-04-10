@@ -4,6 +4,7 @@ import type { RequesterActor } from "../shared/primitives.js";
 import {
   idSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringSchema,
   requesterActorSchema,
@@ -34,12 +35,12 @@ export interface ActionProposal {
   context_manifest_id: string;
   created_at: string;
   status: ActionProposalStatus;
-  execution_payload?: Record<string, unknown>;
+  execution_payload?: JsonObject;
   human_readable_diff?: string;
   reason?: string;
   policy_hint?: EnforcementMode;
   expires_at?: string;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 const actionProposalTargetSchema: z.ZodType<ActionProposalTarget> = z

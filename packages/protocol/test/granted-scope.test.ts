@@ -57,6 +57,16 @@ test("parseGrantedScope rejects an invalid status", () => {
   );
 });
 
+test("parseGrantedScope rejects deny enforcement mode", () => {
+  expectGrantedScopeInvalid(
+    {
+      ...createGrantedScopePayload(),
+      enforcement_mode: "deny"
+    },
+    "enforcement_mode"
+  );
+});
+
 test("parseGrantedScope rejects expires_at values that do not follow issued_at", () => {
   expectGrantedScopeInvalid(
     {

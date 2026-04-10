@@ -5,6 +5,7 @@ import {
   deciderActorSchema,
   idSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringSchema,
   specVersionSchema
@@ -30,7 +31,7 @@ export interface ApprovalReceipt {
   reason?: string;
   valid_until?: string;
   conditions?: ApprovalReceiptConditions;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 const approvalReceiptConditionsSchema: z.ZodType<ApprovalReceiptConditions> = z

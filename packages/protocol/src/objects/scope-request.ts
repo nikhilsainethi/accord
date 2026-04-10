@@ -4,6 +4,7 @@ import type { RequesterActor } from "../shared/primitives.js";
 import {
   idSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringListSchema,
   nonEmptyStringSchema,
@@ -25,7 +26,7 @@ export interface ScopeRequest {
   created_at: string;
   sensitivity_hint?: RiskLevel;
   justification?: string;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 export const scopeRequestSchema: z.ZodType<ScopeRequest> = z

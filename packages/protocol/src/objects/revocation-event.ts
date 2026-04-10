@@ -5,6 +5,7 @@ import {
   deciderActorSchema,
   idSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringSchema,
   specVersionSchema
@@ -22,7 +23,7 @@ export interface RevocationEvent {
   revoked_by: DeciderActor;
   revoked_at: string;
   reason?: string;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 export const revocationEventSchema: z.ZodType<RevocationEvent> = z

@@ -67,6 +67,16 @@ test("parseRevocationEvent rejects invalid revoked_by actor types", () => {
   );
 });
 
+test("parseRevocationEvent rejects impossible revoked_at timestamps", () => {
+  expectRevocationEventInvalid(
+    {
+      ...createRevocationEventPayload(),
+      revoked_at: "2026-02-30T16:18:42Z"
+    },
+    "revoked_at"
+  );
+});
+
 test("parseRevocationEvent rejects unknown top-level fields", () => {
   expectRevocationEventInvalid(
     {

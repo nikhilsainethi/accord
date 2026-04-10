@@ -75,3 +75,9 @@ export type {
 } from "./objects/granted-scope.js";
 export type { RevocationEvent } from "./objects/revocation-event.js";
 export type { ScopeRequest } from "./objects/scope-request.js";
+export type {
+  AuditActor,
+  DeciderActor,
+  GranteeActor,
+  RequesterActor
+} from "./shared/primitives.js";

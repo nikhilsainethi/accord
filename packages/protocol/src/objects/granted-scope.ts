@@ -5,17 +5,26 @@ import {
   idSchema,
   granteeActorSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringListSchema,
   nonEmptyStringSchema,
   specVersionSchema
 } from "../shared/primitives.js";
 import {
-  type EnforcementMode,
   enforcementModeSchema,
   type GrantedScopeStatus,
   grantedScopeStatusSchema
 } from "../shared/enums.js";
+
+const grantedScopeEnforcementModeSchema = enforcementModeSchema.extract([
+  "allow",
+  "require_approval"
+]);
+
+type GrantedScopeEnforcementMode = z.infer<
+  typeof grantedScopeEnforcementModeSchema
+>;
 
 export interface GrantedScopeConstraints {
   max_uses?: number;
@@ -30,12 +39,12 @@ export interface GrantedScope {
   grantee: GranteeActor;
   granted_categories: string[];
   purpose: string;
-  enforcement_mode: EnforcementMode;
+  enforcement_mode: GrantedScopeEnforcementMode;
   issued_at: string;
   expires_at: string;
   status: GrantedScopeStatus;
   constraints?: GrantedScopeConstraints;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 const grantedScopeConstraintsSchema: z.ZodType<GrantedScopeConstraints> = z
@@ -54,10 +63,7 @@ export const grantedScopeSchema: z.ZodType<GrantedScope> = z
     grantee: granteeActorSchema,
     granted_categories: nonEmptyStringListSchema,
     purpose: nonEmptyStringSchema,
-    enforcement_mode: enforcementModeSchema.extract([
-      "allow",
-      "require_approval"
-    ]),
+    enforcement_mode: grantedScopeEnforcementModeSchema,
     issued_at: isoUtcTimestampSchema,
     expires_at: isoUtcTimestampSchema,
     status: grantedScopeStatusSchema,

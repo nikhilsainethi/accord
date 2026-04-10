@@ -5,6 +5,7 @@ import {
   auditActorSchema,
   idSchema,
   isoUtcTimestampSchema,
+  type JsonObject,
   metadataSchema,
   nonEmptyStringSchema,
   specVersionSchema
@@ -23,7 +24,7 @@ export interface AuditRecord {
   recorded_at: string;
   actor?: AuditActor;
   summary?: string;
-  metadata?: Record<string, unknown>;
+  metadata?: JsonObject;
 }
 
 export const auditRecordSchema: z.ZodType<AuditRecord> = z
