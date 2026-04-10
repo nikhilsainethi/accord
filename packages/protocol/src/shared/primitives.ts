@@ -8,7 +8,12 @@ import {
 
 export const specVersionSchema = z.literal("0.1");
 
-export const nonEmptyStringSchema = z.string().min(1);
+export const nonEmptyStringSchema = z
+  .string()
+  .min(1)
+  .refine((value) => value.trim().length > 0, {
+    message: "Expected non-empty string"
+  });
 
 export const idSchema = nonEmptyStringSchema;
 
@@ -17,7 +22,16 @@ export const isoUtcTimestampSchema = z
   .regex(
     /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/,
     "Expected ISO-8601 UTC timestamp"
-  );
+  )
+  .refine((value) => {
+    const parsed = new Date(value);
+
+    if (Number.isNaN(parsed.getTime())) {
+      return false;
+    }
+
+    return parsed.toISOString() === value.replace("Z", ".000Z");
+  }, "Expected a valid ISO-8601 UTC timestamp");
 
 export const metadataSchema = z.record(z.string(), z.unknown());
 

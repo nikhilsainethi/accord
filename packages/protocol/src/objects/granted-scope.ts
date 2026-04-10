@@ -64,7 +64,19 @@ export const grantedScopeSchema: z.ZodType<GrantedScope> = z
     constraints: grantedScopeConstraintsSchema.optional(),
     metadata: metadataSchema.optional()
   })
-  .strict();
+  .strict()
+  .superRefine((value, context) => {
+    const issuedAt = new Date(value.issued_at).getTime();
+    const expiresAt = new Date(value.expires_at).getTime();
+
+    if (expiresAt <= issuedAt) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "expires_at must be later than issued_at",
+        path: ["expires_at"]
+      });
+    }
+  });
 
 export function parseGrantedScope(input: unknown): GrantedScope {
   return grantedScopeSchema.parse(input);

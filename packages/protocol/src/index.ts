@@ -21,6 +21,16 @@ export {
   riskLevelSchema
 } from "./shared/enums.js";
 export {
+  actionProposalSchema,
+  isActionProposal,
+  parseActionProposal
+} from "./objects/action-proposal.js";
+export {
+  approvalReceiptSchema,
+  isApprovalReceipt,
+  parseApprovalReceipt
+} from "./objects/approval-receipt.js";
+export {
   contextManifestSchema,
   isContextManifest,
   parseContextManifest
@@ -35,6 +45,14 @@ export {
   parseScopeRequest,
   scopeRequestSchema
 } from "./objects/scope-request.js";
+export type {
+  ActionProposal,
+  ActionProposalTarget
+} from "./objects/action-proposal.js";
+export type {
+  ApprovalReceipt,
+  ApprovalReceiptConditions
+} from "./objects/approval-receipt.js";
 export type {
   ContextManifest,
   ContextManifestProvenanceEntry,
