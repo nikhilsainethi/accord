@@ -21,6 +21,11 @@ export {
   riskLevelSchema
 } from "./shared/enums.js";
 export {
+  contextManifestSchema,
+  isContextManifest,
+  parseContextManifest
+} from "./objects/context-manifest.js";
+export {
   grantedScopeSchema,
   isGrantedScope,
   parseGrantedScope
@@ -30,6 +35,11 @@ export {
   parseScopeRequest,
   scopeRequestSchema
 } from "./objects/scope-request.js";
+export type {
+  ContextManifest,
+  ContextManifestProvenanceEntry,
+  ContextManifestUsedEntry
+} from "./objects/context-manifest.js";
 export type {
   GrantedScope,
   GrantedScopeConstraints
