@@ -97,3 +97,27 @@ test("parseScopeRequest rejects unknown top-level fields", () => {
     "unrecognized_keys"
   );
 });
+
+test("parseScopeRequest rejects non-JSON metadata values", () => {
+  expectScopeRequestInvalid(
+    {
+      ...createScopeRequestPayload(),
+      metadata: {
+        captured_at: new Date("2026-04-09T14:32:05Z")
+      }
+    },
+    "metadata"
+  );
+});
+
+test("parseScopeRequest rejects non-finite metadata numbers", () => {
+  expectScopeRequestInvalid(
+    {
+      ...createScopeRequestPayload(),
+      metadata: {
+        score: Number.POSITIVE_INFINITY
+      }
+    },
+    "metadata"
+  );
+});

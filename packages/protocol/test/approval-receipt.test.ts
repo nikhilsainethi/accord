@@ -104,3 +104,13 @@ test("parseApprovalReceipt rejects unknown condition fields", () => {
     "unrecognized_keys"
   );
 });
+
+test("parseApprovalReceipt rejects unknown top-level fields", () => {
+  expectApprovalReceiptInvalid(
+    {
+      ...createApprovalReceiptPayload(),
+      unexpected: true
+    },
+    "unrecognized_keys"
+  );
+});

@@ -103,3 +103,13 @@ test("parseActionProposal rejects malformed targets", () => {
     "unrecognized_keys"
   );
 });
+
+test("parseActionProposal rejects unknown top-level fields", () => {
+  expectActionProposalInvalid(
+    {
+      ...createActionProposalPayload(),
+      unexpected: true
+    },
+    "unrecognized_keys"
+  );
+});

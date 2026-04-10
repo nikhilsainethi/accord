@@ -33,7 +33,22 @@ export const isoUtcTimestampSchema = z
     return parsed.toISOString() === value.replace("Z", ".000Z");
   }, "Expected a valid ISO-8601 UTC timestamp");
 
-export const metadataSchema = z.record(z.string(), z.unknown());
+export type JsonPrimitive = string | number | boolean | null;
+
+export type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue };
+
+const jsonValueSchema: z.ZodType<JsonValue> = z.lazy(() =>
+  z.union([
+    z.string(),
+    z.number().finite(),
+    z.boolean(),
+    z.null(),
+    z.array(jsonValueSchema),
+    z.record(jsonValueSchema)
+  ])
+);
+
+export const metadataSchema = z.record(jsonValueSchema);
 
 export const nonEmptyStringListSchema = z.array(nonEmptyStringSchema).min(1);
 
